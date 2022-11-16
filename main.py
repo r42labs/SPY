@@ -13,5 +13,4 @@ class GameParser(parser.BaseParser):
     ]
 
 df = crawler.WebCrawler(GameTraker, GameParser).crawl('https://www.freeroms.com')
-print(df)
 df.to_json(r'data.json', orient='records')
