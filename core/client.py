@@ -17,10 +17,10 @@ class AsyncClient(IClient):
 
     async def fetch(self, urls):
         async with httpx.AsyncClient(http2=True) as client:
-            tasks = []
-            for url in urls:
-                print(url)
-                tasks.append(self.get(url, client))
+            tasks = [
+                self.get(url, client)
+                for url in urls
+            ]
 
             responses = await asyncio.gather(*tasks)
             self.responses = responses
